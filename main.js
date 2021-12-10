@@ -43,7 +43,12 @@ const azimuth = getAzimuth(latitude);
 const azimuth_x = Math.sin(azimuth);
 const azimuth_y = Math.cos(azimuth);
 
-const azimuthLine = document.getElementById("solar");
+const azimuthLine = document.getElementById("solarline");
 azimuthLine.setAttribute("x2", azimuth_x);
 azimuthLine.setAttribute("y2", azimuth_y);
 azimuthLine.setAttribute("stroke-width", "0.1");
+const solaricon = document.getElementById("solaricon");
+solaricon.setAttribute("x", azimuth_x);
+solaricon.setAttribute("y", azimuth_y);
+solaricon.setAttribute("dominant-baseline", "middle");
+solaricon.setAttribute("text-anchor", "middle");

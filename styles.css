@@ -1,4 +1,26 @@
+body {
+  margin: 0;
+  text-align: center;
+}
+
 svg {
-  width: 500px;
-  height: 500px;
+  width: 90vw;
+  max-height: 90vh;
+  display: block;
+  margin: 0 auto;
+  font-size: 0.1px;
+}
+
+line {
+  stroke-linecap: round;
+  stroke: black;
+  stroke-width: 0.1;
+}
+
+line.north {
+  stroke: red;
+}
+
+line#solarline {
+  stroke: green;
 }
