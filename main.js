@@ -38,6 +38,12 @@ const getAzimuth = (latitude) => {
 
 const latitude = 0.9076; // Delft's latitude in radians
 const azimuth = getAzimuth(latitude);
-const azimuth_degrees = (180 / Math.PI) * azimuth;
 
-document.getElementById("azimuth").innerText = azimuth_degrees.toFixed(2);
+// We flip from astronomic angles to mathematical conventional angles
+const azimuth_x = Math.sin(azimuth);
+const azimuth_y = Math.cos(azimuth);
+
+const azimuthLine = document.getElementById("solar");
+azimuthLine.setAttribute("x2", azimuth_x);
+azimuthLine.setAttribute("y2", azimuth_y);
+azimuthLine.setAttribute("stroke-width", "0.1");

@@ -43,8 +43,53 @@
     <link href="styles.css" rel="stylesheet" />
   </head>
   <body>
-    <p>Your Solar azimuth (in degrees) is:</p>
-    <span id="azimuth" />
+    <svg viewBox="-1 -1 2 2">
+      <line
+        id="north"
+        x1="0"
+        y1="0"
+        x2="0"
+        y2="-1"
+        stroke="red"
+        stroke-width="0.1"
+      />
+      <line
+        id="east"
+        x1="0"
+        y1="0"
+        x2="1"
+        y2="0"
+        stroke="black"
+        stroke-width="0.1"
+      />
+      <line
+        id="south"
+        x1="0"
+        y1="0"
+        x2="0"
+        y2="1"
+        stroke="black"
+        stroke-width="0.1"
+      />
+      <line
+        id="west"
+        x1="0"
+        y1="0"
+        x2="-1"
+        y2="0"
+        stroke="black"
+        stroke-width="0.1"
+      />
+      <line
+        id="solar"
+        x1="0"
+        y1="0"
+        x2="0"
+        y2="0"
+        stroke="green"
+        stroke-width="0"
+      />
+    </svg>
   </body>
   <script src="main.js"></script>
 </html>
