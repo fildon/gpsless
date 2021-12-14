@@ -36,19 +36,26 @@ const getAzimuth = (latitude) => {
   return azimuth;
 };
 
-const latitude = 0.9076; // Delft's latitude in radians
-const azimuth = getAzimuth(latitude);
-
-// We flip from astronomic angles to mathematical conventional angles
-const azimuth_x = Math.sin(azimuth);
-const azimuth_y = -1 * Math.cos(azimuth);
-
+const selectElement = document.getElementById("location-select");
 const azimuthLine = document.getElementById("solarline");
-azimuthLine.setAttribute("x2", azimuth_x);
-azimuthLine.setAttribute("y2", azimuth_y);
 azimuthLine.setAttribute("stroke-width", "0.1");
 const solaricon = document.getElementById("solaricon");
-solaricon.setAttribute("x", azimuth_x);
-solaricon.setAttribute("y", azimuth_y);
 solaricon.setAttribute("dominant-baseline", "middle");
 solaricon.setAttribute("text-anchor", "middle");
+let interval;
+selectElement.addEventListener("change", (event) => {
+  clearInterval(interval);
+  const latitude = parseFloat(event.target.value);
+  if (Number.isNaN(latitude)) return;
+
+  interval = setInterval(() => {
+    const azimuth = getAzimuth(latitude);
+    // We flip from astronomic angles to mathematical conventional angles
+    const azimuth_x = Math.sin(azimuth);
+    const azimuth_y = -1 * Math.cos(azimuth);
+    azimuthLine.setAttribute("x2", azimuth_x);
+    azimuthLine.setAttribute("y2", azimuth_y);
+    solaricon.setAttribute("x", azimuth_x);
+    solaricon.setAttribute("y", azimuth_y);
+  }, 100);
+});

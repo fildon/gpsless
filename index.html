@@ -44,6 +44,13 @@
   </head>
   <body>
     <h1>Compass</h1>
+    <label for="location-select">Choose your nearest capital:</label>
+    <select name="location" id="location-select">
+      <option value="">--Please choose an option--</option>
+      <option value="0.9076">Delft</option>
+      <option value="0.7055">Madrid</option>
+      <option value="-0.4491">Pretoria</option>
+    </select>
     <p>Point the green line at the sun. The red line is now pointing North!</p>
     <svg viewBox="-1.1 -1.1 2.2 2.2">
       <line class="north" x1="0" y1="0" x2="0" y2="-1" />
