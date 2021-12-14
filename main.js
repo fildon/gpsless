@@ -41,7 +41,7 @@ const azimuth = getAzimuth(latitude);
 
 // We flip from astronomic angles to mathematical conventional angles
 const azimuth_x = Math.sin(azimuth);
-const azimuth_y = Math.cos(azimuth);
+const azimuth_y = -1 * Math.cos(azimuth);
 
 const azimuthLine = document.getElementById("solarline");
 azimuthLine.setAttribute("x2", azimuth_x);
