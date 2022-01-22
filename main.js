@@ -6,14 +6,10 @@ const degToRad = (degrees) => PI * (degrees / 180);
  * @see http://mypages.iit.edu/~maslanka/SolarGeo.pdf
  */
 const getAzimuth = (latitudeRads, currentTime = new Date()) => {
-  const phiRads = latitudeRads;
-  const currentHour = currentTime.getHours();
-  const currentMinute = currentTime.getMinutes();
-  const currentSecond = currentTime.getSeconds();
   const omegaRads =
-    ((2 * PI) / 24) * (currentHour - 12) +
-    ((2 * PI) / (24 * 60)) * currentMinute +
-    ((2 * PI) / (24 * 60 * 60)) * currentSecond;
+    ((2 * PI) / 24) * (currentTime.getHours() - 12) +
+    ((2 * PI) / (24 * 60)) * currentTime.getMinutes() +
+    ((2 * PI) / (24 * 60 * 60)) * currentTime.getSeconds();
 
   const monthOffsets = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
   const daysSinceNewYear =
@@ -24,13 +20,13 @@ const getAzimuth = (latitudeRads, currentTime = new Date()) => {
   );
 
   const alphaRads = asin(
-    sin(deltaRads) * sin(phiRads) +
-      cos(deltaRads) * cos(omegaRads) * cos(phiRads)
+    sin(deltaRads) * sin(latitudeRads) +
+      cos(deltaRads) * cos(omegaRads) * cos(latitudeRads)
   );
 
   const azimuthRads = acos(
-    (sin(deltaRads) * cos(phiRads) -
-      cos(deltaRads) * cos(omegaRads) * sin(phiRads)) /
+    (sin(deltaRads) * cos(latitudeRads) -
+      cos(deltaRads) * cos(omegaRads) * sin(latitudeRads)) /
       cos(alphaRads)
   );
 
@@ -68,7 +64,7 @@ document
     if (Number.isNaN(latitude)) return resetUi();
 
     interval = setInterval(() => {
-      const azimuth = getAzimuth(latitude);
+      const azimuth = getAzimuth(degToRad(latitude));
       updateUi(azimuth);
     }, 100);
   });
